@@ -5,3 +5,33 @@
   width: 400px;
   margin: 0 auto;
 }
+
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+.col > button {
+  margin: 5px;
+}
+
+.col:nth-child(1) > button {
+  margin-left: 0;
+}
+
+.col:nth-child(4) > button {
+  margin-right: 0px;
+}
+
+.col > button:nth-child(1) {
+  margin-top: 0;
+}
+
+.col > button:last-child {
+  margin-bottom: 0;
+}
+
+.grid {
+  display: flex;
+  padding: 10px;
+}
