@@ -27,3 +27,7 @@ The build is minified and the filenames include the hashes.
 ### `yarn format`
 
 Formats all .js and .jsx files in the `src` folder.
+
+### `yarn lint`
+
+Checks eslint rules on .js and .jsx files in the `src` folder.
