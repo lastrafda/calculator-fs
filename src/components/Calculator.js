@@ -89,45 +89,48 @@ const Calculator = ({ initialValue }) => {
   };
 
   return (
-    <div className="Calculator">
-      <Display text={`${state.current ? state.current : "0"}`} />
-      <div className="grid">
-        <div className="col">
-          <Button handleClick={() => setOperator("+")} value="+" />
-          <Button handleClick={() => append("7")} value="7" />
-          <Button handleClick={() => append("4")} value="4" />
-          <Button handleClick={() => append("1")} value="1" />
-          <Button handleClick={() => append("0")} value="0" />
+    <>
+      <div className="Calculator">
+        <Display text={`${state.current ? state.current : "0"}`} />
+        <div className="grid">
+          <div className="col">
+            <Button handleClick={() => setOperator("+")} value="+" />
+            <Button handleClick={() => append("7")} value="7" />
+            <Button handleClick={() => append("4")} value="4" />
+            <Button handleClick={() => append("1")} value="1" />
+            <Button handleClick={() => append("0")} value="0" />
+          </div>
+          <div className="col">
+            <Button handleClick={() => setOperator("-")} value="-" />
+            <Button handleClick={() => append("8")} value="8" />
+            <Button handleClick={() => append("5")} value="5" />
+            <Button handleClick={() => append("2")} value="2" />
+            <Button handleClick={() => append(".")} value="." />
+          </div>
+          <div className="col">
+            <Button handleClick={() => setOperator("*")} value="x" />
+            <Button handleClick={() => append("9")} value="9" />
+            <Button handleClick={() => append("6")} value="6" />
+            <Button handleClick={() => append("3")} value="3" />
+            <Button
+              type="danger"
+              handleClick={() => dispatch({ type: "allClear" })}
+              value="AC"
+            />
+          </div>
+          <div className="col">
+            <Button handleClick={() => setOperator("/")} value="÷" />
+            <Button
+              type="primary"
+              handleClick={() => dispatch({ type: "calculate" })}
+              value="="
+            />
+          </div>
         </div>
-        <div className="col">
-          <Button handleClick={() => setOperator("-")} value="-" />
-          <Button handleClick={() => append("8")} value="8" />
-          <Button handleClick={() => append("5")} value="5" />
-          <Button handleClick={() => append("2")} value="2" />
-          <Button handleClick={() => append(".")} value="." />
-        </div>
-        <div className="col">
-          <Button handleClick={() => setOperator("*")} value="x" />
-          <Button handleClick={() => append("9")} value="9" />
-          <Button handleClick={() => append("6")} value="6" />
-          <Button handleClick={() => append("3")} value="3" />
-          <Button
-            type="danger"
-            handleClick={() => dispatch({ type: "allClear" })}
-            value="AC"
-          />
-        </div>
-        <div className="col">
-          <Button handleClick={() => setOperator("/")} value="÷" />
-          <Button
-            type="primary"
-            handleClick={() => dispatch({ type: "calculate" })}
-            value="="
-          />
-        </div>
+        initial Value: {initialValue}
       </div>
-      initial Value: {initialValue}
-    </div>
+      <pre>{JSON.stringify(state)}</pre>
+    </>
   );
 };
 
