@@ -16,6 +16,12 @@ function reducer(state, action) {
   const { payload, type } = action;
   const currentHasNoDots = state.current.indexOf(".") === -1;
   switch (type) {
+    case "allClear":
+      return {
+        current: "",
+        operator: "",
+        previous: "",
+      };
     case "append":
       if (payload.value === "." && currentHasNoDots) {
         const formatedDot = state.current.length ? "." : "0.";
@@ -94,7 +100,7 @@ const Calculator = ({ initialValue }) => {
           <Button handleClick={() => append("3")} value="3" />
           <Button
             type="danger"
-            handleClick={() => console.log("AC")}
+            handleClick={() => dispatch({ type: "allClear" })}
             value="AC"
           />
         </div>
