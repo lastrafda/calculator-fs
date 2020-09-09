@@ -6,9 +6,9 @@ import Display from "./Display";
 
 function init(value) {
   return {
-    current: "",
+    current: value ? value : "",
     operator: "",
-    previous: value ? value : "",
+    previous: "",
   };
 }
 
@@ -26,6 +26,16 @@ function reducer(state, action) {
       }
       if (payload.value !== ".") {
         return { ...state, current: state.current + payload.value };
+      }
+      return { ...state };
+    case "setOperator":
+      // if there isn't an operation in course then change the operator
+      if (state.previous === "") {
+        return {
+          current: state.previous,
+          operator: payload.operator,
+          previous: state.current,
+        };
       }
       return { ...state };
     default:
@@ -50,26 +60,35 @@ const Calculator = ({ initialValue }) => {
     });
   };
 
+  const setOperator = (operator) => {
+    return dispatch({
+      type: "setOperator",
+      payload: {
+        operator,
+      },
+    });
+  };
+
   return (
     <div className="Calculator">
       <Display text={`${state.current ? state.current : "0"}`} />
       <div className="grid">
         <div className="col">
-          <Button handleClick={() => console.log("+")} value="+" />
+          <Button handleClick={() => setOperator("+")} value="+" />
           <Button handleClick={() => append("7")} value="7" />
           <Button handleClick={() => append("4")} value="4" />
           <Button handleClick={() => append("1")} value="1" />
           <Button handleClick={() => append("0")} value="0" />
         </div>
         <div className="col">
-          <Button handleClick={() => console.log("-")} value="-" />
+          <Button handleClick={() => setOperator("-")} value="-" />
           <Button handleClick={() => append("8")} value="8" />
           <Button handleClick={() => append("5")} value="5" />
           <Button handleClick={() => append("2")} value="2" />
           <Button handleClick={() => append(".")} value="." />
         </div>
         <div className="col">
-          <Button handleClick={() => console.log("*")} value="x" />
+          <Button handleClick={() => setOperator("*")} value="x" />
           <Button handleClick={() => append("9")} value="9" />
           <Button handleClick={() => append("6")} value="6" />
           <Button handleClick={() => append("3")} value="3" />
@@ -80,7 +99,7 @@ const Calculator = ({ initialValue }) => {
           />
         </div>
         <div className="col">
-          <Button handleClick={() => console.log("/")} value="÷" />
+          <Button handleClick={() => setOperator("/")} value="÷" />
           <Button
             type="primary"
             handleClick={() => console.log("=")}
