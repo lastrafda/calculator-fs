@@ -121,7 +121,6 @@ const Calculator = ({ initialValue }) => {
         </div>
       </div>
       initial Value: {initialValue}
-      <h4>{JSON.stringify(state)}</h4>
     </div>
   );
 };
