@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <h1>A Simple Calculator</h1>
-      <Calculator initialValue="0" />
+      <Calculator initialValue="124" />
     </div>
   );
 }
