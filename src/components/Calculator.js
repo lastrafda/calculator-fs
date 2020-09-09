@@ -42,14 +42,12 @@ const Calculator = ({ initialValue }) => {
    * @param {string} value A dot ('.') or a digit ('0','2',...,'9')
    */
   const append = (value) => {
-    return () => {
-      return dispatch({
-        type: "append",
-        payload: {
-          value,
-        },
-      });
-    };
+    return dispatch({
+      type: "append",
+      payload: {
+        value,
+      },
+    });
   };
 
   return (
@@ -58,23 +56,23 @@ const Calculator = ({ initialValue }) => {
       <div className="grid">
         <div className="col">
           <Button handleClick={() => console.log("+")} value="+" />
-          <Button handleClick={append("7")} value="7" />
-          <Button handleClick={append("4")} value="4" />
-          <Button handleClick={append("1")} value="1" />
-          <Button handleClick={append("0")} value="0" />
+          <Button handleClick={() => append("7")} value="7" />
+          <Button handleClick={() => append("4")} value="4" />
+          <Button handleClick={() => append("1")} value="1" />
+          <Button handleClick={() => append("0")} value="0" />
         </div>
         <div className="col">
           <Button handleClick={() => console.log("-")} value="-" />
-          <Button handleClick={append("8")} value="8" />
-          <Button handleClick={append("5")} value="5" />
-          <Button handleClick={append("2")} value="2" />
-          <Button handleClick={append(".")} value="." />
+          <Button handleClick={() => append("8")} value="8" />
+          <Button handleClick={() => append("5")} value="5" />
+          <Button handleClick={() => append("2")} value="2" />
+          <Button handleClick={() => append(".")} value="." />
         </div>
         <div className="col">
           <Button handleClick={() => console.log("*")} value="x" />
-          <Button handleClick={append("9")} value="9" />
-          <Button handleClick={append("6")} value="6" />
-          <Button handleClick={append("3")} value="3" />
+          <Button handleClick={() => append("9")} value="9" />
+          <Button handleClick={() => append("6")} value="6" />
+          <Button handleClick={() => append("3")} value="3" />
           <Button
             type="danger"
             handleClick={() => console.log("AC")}
