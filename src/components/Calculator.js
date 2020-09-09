@@ -14,19 +14,20 @@ function init(value) {
 
 function reducer(state, action) {
   const { payload, type } = action;
+  const currentHasNoDots = state.current.indexOf(".") === -1;
   switch (type) {
     case "append":
-      if (!state.operator) {
-        if (payload.value === "." && state.current.indexOf(".") === -1) {
-          const formatedDot = state.current.length ? "." : "0.";
-          return { ...state, current: state.current + formatedDot };
-        }
-        if (payload.value !== ".") {
-          return { ...state, current: state.current + "." };
-        }
+      if (payload.value === "." && currentHasNoDots) {
+        const formatedDot = state.current.length ? "." : "0.";
+        return { ...state, current: state.current + formatedDot };
+      }
+      if (payload.value === "0" && +state.current === 0 && currentHasNoDots) {
         return { ...state };
       }
-      break;
+      if (payload.value !== ".") {
+        return { ...state, current: state.current + payload.value };
+      }
+      return { ...state };
     default:
       console.log(`Action Type: "${action.type} is not currently implemented"`);
       return { ...state };
