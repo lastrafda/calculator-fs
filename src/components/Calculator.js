@@ -30,6 +30,9 @@ function reducer(state, action) {
       if (payload.value === "0" && +state.current === 0 && currentHasNoDots) {
         return { ...state };
       }
+      if (payload.value !== "0" && +state.current === 0 && currentHasNoDots) {
+        return { ...state, current: payload.value };
+      }
       if (payload.value !== ".") {
         return { ...state, current: state.current + payload.value };
       }
@@ -118,6 +121,7 @@ const Calculator = ({ initialValue }) => {
         </div>
       </div>
       initial Value: {initialValue}
+      <h4>{JSON.stringify(state)}</h4>
     </div>
   );
 };
