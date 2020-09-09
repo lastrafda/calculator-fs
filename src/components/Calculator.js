@@ -3,6 +3,7 @@ import "./Calculator.css";
 import PropTypes from "prop-types";
 import Button from "./Button";
 import Display from "./Display";
+import { getCalculation } from "./../util/util";
 
 function init(value) {
   return {
@@ -15,6 +16,8 @@ function init(value) {
 function reducer(state, action) {
   const { payload, type } = action;
   const currentHasNoDots = state.current.indexOf(".") === -1;
+  let result;
+
   switch (type) {
     case "allClear":
       return {
@@ -37,6 +40,9 @@ function reducer(state, action) {
         return { ...state, current: state.current + payload.value };
       }
       return { ...state };
+    case "calculate":
+      result = getCalculation(state.previous, state.current, state.operator);
+      return { current: result, operator: "", previous: "" };
     case "setOperator":
       // if there isn't an operation in course then change the operator
       if (state.previous === "") {
@@ -115,7 +121,7 @@ const Calculator = ({ initialValue }) => {
           <Button handleClick={() => setOperator("/")} value="÷" />
           <Button
             type="primary"
-            handleClick={() => console.log("=")}
+            handleClick={() => dispatch({ type: "calculate" })}
             value="="
           />
         </div>
