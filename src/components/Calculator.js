@@ -1,33 +1,79 @@
-import React from "react";
+import React, { useReducer } from "react";
 import "./Calculator.css";
 import PropTypes from "prop-types";
 import Button from "./Button";
 import Display from "./Display";
 
+function init(value) {
+  return {
+    current: "",
+    operator: "",
+    previous: value ? value : "",
+  };
+}
+
+function reducer(state, action) {
+  const { payload, type } = action;
+  switch (type) {
+    case "append":
+      if (!state.operator) {
+        if (payload.value === "." && state.current.indexOf(".") === -1) {
+          const formatedDot = state.current.length ? "." : "0.";
+          return { ...state, current: state.current + formatedDot };
+        }
+        if (payload.value !== ".") {
+          return { ...state, current: state.current + "." };
+        }
+        return { ...state };
+      }
+      break;
+    default:
+      console.log(`Action Type: "${action.type} is not currently implemented"`);
+      return { ...state };
+  }
+}
+
 const Calculator = ({ initialValue }) => {
+  const [state, dispatch] = useReducer(reducer, initialValue, init);
+
+  /**
+   * Dispatches an action with type "append".
+   * @param {string} value A dot ('.') or a digit ('0','2',...,'9')
+   */
+  const append = (value) => {
+    return () => {
+      return dispatch({
+        type: "append",
+        payload: {
+          value,
+        },
+      });
+    };
+  };
+
   return (
     <div className="Calculator">
-      <Display text="0" />
+      <Display text={`${state.current ? state.current : "0"}`} />
       <div className="grid">
         <div className="col">
           <Button handleClick={() => console.log("+")} value="+" />
-          <Button handleClick={() => console.log("7")} value="7" />
-          <Button handleClick={() => console.log("4")} value="4" />
-          <Button handleClick={() => console.log("2")} value="1" />
-          <Button handleClick={() => console.log("0")} value="0" />
+          <Button handleClick={append("7")} value="7" />
+          <Button handleClick={append("4")} value="4" />
+          <Button handleClick={append("1")} value="1" />
+          <Button handleClick={append("0")} value="0" />
         </div>
         <div className="col">
           <Button handleClick={() => console.log("-")} value="-" />
-          <Button handleClick={() => console.log("8")} value="8" />
-          <Button handleClick={() => console.log("5")} value="5" />
-          <Button handleClick={() => console.log("2")} value="2" />
-          <Button handleClick={() => console.log(".")} value="." />
+          <Button handleClick={append("8")} value="8" />
+          <Button handleClick={append("5")} value="5" />
+          <Button handleClick={append("2")} value="2" />
+          <Button handleClick={append(".")} value="." />
         </div>
         <div className="col">
           <Button handleClick={() => console.log("*")} value="x" />
-          <Button handleClick={() => console.log("9")} value="9" />
-          <Button handleClick={() => console.log("6")} value="6" />
-          <Button handleClick={() => console.log("3")} value="3" />
+          <Button handleClick={append("9")} value="9" />
+          <Button handleClick={append("6")} value="6" />
+          <Button handleClick={append("3")} value="3" />
           <Button
             type="danger"
             handleClick={() => console.log("AC")}
