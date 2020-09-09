@@ -54,7 +54,7 @@ const Calculator = ({ initialValue }) => {
   const [state, dispatch] = useReducer(reducer, initialValue, init);
 
   /**
-   * Dispatches an action with type "append".
+   * Dispatches an action with an "append" type.
    * @param {string} value A dot ('.') or a digit ('0','2',...,'9')
    */
   const append = (value) => {
@@ -66,6 +66,10 @@ const Calculator = ({ initialValue }) => {
     });
   };
 
+  /**
+   * Dispatches an action with a "setOperator" type.
+   * @param {string} operator A string representing a mathematical operator (*, /, + and -)
+   */
   const setOperator = (operator) => {
     return dispatch({
       type: "setOperator",
