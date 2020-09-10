@@ -1,6 +1,6 @@
 # A Simple Calculator
 
-This is a calculator build with ReactJS. I dediced to use `useReducer` to manage the state because I wanted to try something that Steve Kinney mentions on Frontend Masters. He states that using `useReducer` allows you to write unit tests more easily, since you don't need to care about mounting components, you just care about the state.
+This is a calculator built with ReactJS. I decided to use `useReducer` to manage the state because I wanted to try something that Steve Kinney mentions on Frontend Masters. He states that using `useReducer` allows you to write unit tests more easily, since you don't have to worry about mounting components, you just have to worry about the state.
 
 ## Try it live!
 
