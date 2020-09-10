@@ -1,6 +1,14 @@
 import { getCalculation } from "./../util/util";
 
-export default function reducer(state, action) {
+export function init(value) {
+  return {
+    current: value ? value : "",
+    operator: "",
+    previous: "",
+  };
+}
+
+export function reducer(state, action) {
   const { payload, type } = action;
   const currentHasNoDots = state.current.indexOf(".") === -1;
   let result;

@@ -3,15 +3,7 @@ import "./Calculator.css";
 import PropTypes from "prop-types";
 import Button from "./Button";
 import Display from "./Display";
-import reducer from "./Calculator.reducer";
-
-function init(value) {
-  return {
-    current: value ? value : "",
-    operator: "",
-    previous: "",
-  };
-}
+import { init, reducer } from "./Calculator.reducer";
 
 const Calculator = ({ initialValue }) => {
   const [state, dispatch] = useReducer(reducer, initialValue, init);
