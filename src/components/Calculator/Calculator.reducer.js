@@ -36,6 +36,9 @@ export function reducer(state, action) {
       }
       return { ...state };
     case "calculate":
+      if (!state.operator) {
+        return { ...state };
+      }
       result = getCalculation(state.previous, state.current, state.operator);
       return { current: result, operator: "", previous: "" };
     case "setOperator":
