@@ -1,4 +1,10 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# A Simple Calculator
+
+This is a calculator build with ReactJS. I dediced to use `useReducer` to manage the state because I wanted to try something that Steve Kinney mentions on Frontend Masters. He states that using `useReducer` allows you to write unit tests more easily, since you don't need to care about mounting components, you just care about the state.
+
+## Try it live!
+
+[DEMO](https://calculator-fs.vercel.app/)
 
 ## Available Scripts
 
