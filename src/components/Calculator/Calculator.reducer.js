@@ -1,4 +1,4 @@
-import { getCalculation } from "./../util/util";
+import { getCalculation } from "../../util/util";
 
 export function init(value) {
   return {

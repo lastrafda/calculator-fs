@@ -1,8 +1,8 @@
 import React, { useReducer } from "react";
 import "./Calculator.css";
 import PropTypes from "prop-types";
-import Button from "./Button";
-import Display from "./Display";
+import Button from "../Button/Button";
+import Display from "../Display/Display";
 import { init, reducer } from "./Calculator.reducer";
 
 const Calculator = ({ initialValue }) => {
