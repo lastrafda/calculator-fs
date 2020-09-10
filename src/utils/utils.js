@@ -1,5 +1,5 @@
 /**
- *
+ * Performs a mathematical operation between two numbers
  * @param {string} x First number in a mathematical operation
  * @param {string} y Second number in a mathematical operation
  * @param {string} operator Mathematical operator (+, -, * and /)
