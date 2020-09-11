@@ -44,7 +44,7 @@ describe("calculator reducer when there is no initial value", () => {
   });
 });
 
-describe("calculator reducer when there is a initial value", () => {
+describe("calculator reducer when there is an initial value", () => {
   beforeEach(() => {
     state = init("124");
   });
